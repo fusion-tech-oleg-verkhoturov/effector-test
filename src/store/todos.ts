@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, sample } from "effector";
 import { Todo } from "../types";
 import { getTodosFx } from "../api";
 
@@ -9,11 +9,17 @@ export const $todosFiltered = $todos.map(todos =>{
   return res
 })
 
+
 export const setTodosEvent = createEvent<Todo[]>()
 export const addTodoEvent = createEvent<string>()
 export const updateTodoEvent = createEvent<Todo>()
 export const deleteTodoEvent = createEvent<number>()
+export const getAllTodos = createEvent()
 
+sample({
+  clock: getAllTodos,
+  target: [getTodosFx],
+});
 
 $todos
   .on(setTodosEvent, (_, newTodos) => newTodos)

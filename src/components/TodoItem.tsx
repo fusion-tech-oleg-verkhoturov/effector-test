@@ -8,9 +8,7 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
-import { useEvent } from "effector-react";
 
-import { updateTodoEvent, deleteTodoEvent } from "../store/todos";
 import { Todo } from "../types";
 import { Check, Close } from "@mui/icons-material";
 
@@ -21,8 +19,6 @@ type Props = {
 }
 
 const Todoitem: FC<Props> = ({todo, updateTodo, deleteTodo}) => {
-  // const updateTodo = useEvent(updateTodoEvent);
-  // const deleteTodo = useEvent(deleteTodoEvent);
   const [isEditMode, setEditMode] = useState(false);
   const [updateText, setUpdateText] = useState(todo.val);
 
